@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick UI</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="h-screen">
+      <!-- Navbar -->
+      <nav
+        class="flex items-center text-white/90 justify-between fixed top-0 w-full h-15 px-40 border-b-[1px] border-b-gray-800/20 backdrop-blur-lg"
+      >
+        <div class="font-bold text-3xl">QUICK UI</div>
+        <ul class="flex gap-6">
+          <div
+            class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default"
+          >
+            <a href="index.html">
+              <li class="group-hover:-translate-y-10 transition duration-300">
+                Home
+              </li>
+              <li
+                class="absolute top-10 group-hover:-translate-y-10 transition duration-300"
+              >
+                Home
+              </li>
+            </a>
+          </div>
+          <div
+            class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default"
+          >
+            <a href="/generator/generator.html">
+              <li class="group-hover:-translate-y-10 transition duration-300">
+                Generator
+              </li>
+              <li
+                class="absolute top-10 group-hover:-translate-y-10 transition duration-300"
+              >
+                Generator
+              </li>
+            </a>
+          </div>
+          <div
+            class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default"
+          >
+            <a href="/history/history.html">
+              <li class="group-hover:-translate-y-10 transition duration-300">
+                History
+              </li>
+              <li
+                class="absolute top-10 group-hover:-translate-y-10 transition duration-300"
+              >
+                History
+              </li>
+            </a>
+          </div>
+        </ul>
+      </nav>
+
+      <!-- main -->
+      <div class="h-full gap-5 flex flex-col justify-center items-center">
+        <h1 class="text-8xl text-white/90 font-bold">Welcome To QUICK UI</h1>
+        <p class="text-lg text-gray-400">
+          Community-built library of UI elements. Customize & Copy ready to use
+          components as HTML/CSS
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
