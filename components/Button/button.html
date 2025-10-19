@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick UI - Button Generator</title>
+    <link rel="stylesheet" href="button.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Add Inter font for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div class="min-h-screen w-full">
+        <!-- Navbar -->
+        <nav
+            class="flex items-center text-white/90 z-10 justify-between fixed top-0 w-full py-4 px-4 sm:px-6 md:px-8 lg:px-12 border-b-[1px] border-b-gray-800/20 backdrop-blur-lg">
+            <a href="/index.html">
+                <div class="font-bold text-2xl sm:text-3xl">QUICK UI</div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden sm:flex gap-4 md:gap-6">
+                <div class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default">
+                    <a href="../../index.html">
+                        <li class="group-hover:-translate-y-10 transition duration-300">
+                            Home
+                        </li>
+                        <li class="absolute top-10 group-hover:-translate-y-10 transition duration-300">
+                            Home
+                        </li>
+                    </a>
+                </div>
+                <div class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default">
+                    <a href="../../generator/generator.html">
+                        <li class="group-hover:-translate-y-10 transition duration-300">
+                            Generator
+                        </li>
+                        <li class="absolute top-10 group-hover:-translate-y-10 transition duration-300">
+                            Generator
+                        </li>
+                    </a>
+                </div>
+                <div class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default">
+                    <a href="../../history/history.html">
+                        <li class="group-hover:-translate-y-10 transition duration-300">
+                            History
+                        </li>
+                        <li class="absolute top-10 group-hover:-translate-y-10 transition duration-300">
+                            History
+                        </li>
+                    </a>
+                </div>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="sm:hidden flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown (hidden by default) -->
+        <div id="mobileMenu"
+            class="fixed top-16 inset-x-0 hidden bg-[#030712] backdrop-blur-lg z-50 border-b border-gray-800">
+            <div class="p-4 space-y-4">
+                <a href="../../index.html" class="block py-2 px-4 text-white hover:bg-gray-800 rounded">Home</a>
+                <a href="../../generator/generator.html"
+                    class="block py-2 px-4 text-white hover:bg-gray-800 rounded">Generator</a>
+                <a href="../../history/history.html"
+                    class="block py-2 px-4 text-white hover:bg-gray-800 rounded">History</a>
+            </div>
+        </div>
+
+        <main class="pt-20 pb-10 px-4 sm:px-6 md:px-8">
+
+            <div class="border h-full rounded-lg p-6 bg-gray-900/50 backdrop-blur-lg border-gray-800">
+                <h1 class="text-3xl font-bold mb-6">Button Generator</h1>
+
+                <div class="flex flex-row gap-6">
+                    <!-- left -->
+                    <div class="border border-gray-800 flex flex-col gap-6 w-[40%] p-4 rounded-lg h-fit">
+                        <div class="flex justify-between w-full items-center">
+                            <div>
+                                <label for="buttonText" class="block text-sm font-medium mb-2">Button Text</label>
+                                <input type="text" id="buttonText" placeholder="Enter button text here." id="buttonText"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+
+                            <div>
+                                <label for="buttonTitle" class="block text-sm font-medium mb-2">Button Title</label>
+                                <input type="text" id="buttonTitle" placeholder="Enter button title here."
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between w-full items-center">
+                            <div>
+                                <label for="buttonColor" class="block text-sm font-medium mb-2">Button Color</label>
+                                <input type="color" id="buttonColor" value="#2563EB"
+                                    class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                <p class="text-sm">Selected Color: <span id="colorValue">#2563EB</span></p>
+                            </div>
+                            <div>
+                                <label for="buttonTextColor" class="block text-sm font-medium mb-2">Button Text Color</label>
+                                <input type="color" id="buttonTextColor" value="#FFFFFF"
+                                    class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                <p class="text-sm">Selected Color: <span id="textColorValue">#FFFFFF</span></p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between w-full items-center">
+                            <div>
+                                <label for="buttonBorderColor" class="block text-sm font-medium mb-2">Button Border
+                                    Color</label>
+                                <input type="color" id="buttonBorderColor" value="#2563EB"
+                                    class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                <p class="text-sm">Selected Color: <span id="borderColorValue">#2563EB</span></p>
+                            </div>
+                            <div>
+                                <label for="buttonBorderWidth" class="block text-sm font-medium mb-2">Button Border Width
+                                    (px)</label>
+                                <input type="number" id="buttonBorderWidth" value="2" min="0"
+                                    class="border text-center w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+
+                        </div>
+                        <div class="flex justify-between w-full items-center">
+                            <div>
+                                <label for="buttonBorderRadius" class="block text-sm font-medium mb-2">Button Border
+                                    Radius (px)</label>
+                                <input type="number" id="buttonBorderRadius" value="0" min="0" max="100"
+                                    class="border text-center w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+                            <div>
+                                <label for="buttonPadding" class="block text-sm font-medium mb-2">Button Padding
+                                    (px)</label>
+                                <input type="number" id="buttonPadding" value="8" min="0"
+                                    class="border text-center w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="w-[48%]">
+                                <label for="hoverEffect" class="block text-sm font-medium mb-2">Hover Effect</label>
+    
+                                <select id="hoverEffect"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                    <option value="none" class="bg-[#090F1D]">None</option>
+                                    <option value="darken" class="bg-[#090F1D]">Darken</option>
+                                    <option value="lighten" class="bg-[#090F1D]">Lighten</option>
+                                    <option value="scale" class="bg-[#090F1D]">Scale Up</option>
+                                </select>
+                            </div>
+                            <div class="w-[48%]">
+                                <label for="transitionDuration" class="block text-sm font-medium mb-2">Transition Duration
+                                    (ms)</label>
+                                <input type="number" id="transitionDuration" value="300" min="0"
+                                    class="border p-2 text-center w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- right -->
+                    <div class="border border-gray-800 w-[60%] p-4 rounded-lg">
+                        <div class="mb-10">
+                            <label class="block text-sm font-medium mb-2">Preview:</label>
+                            <button id="buttonPreview"
+                                class="px-4 py-2 bg-blue-600 text-white rounded transition duration-300">
+                                Button
+                            </button>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h2>Generated Code:</h2>
+                            <div>
+                                <!-- formatted html code -->
+
+                                <pre class="bg-gray-800 p-4 rounded text-sm overflow-x-auto" id="generatedCode"><code>&lt;button class=&quot;px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300&quot;&gt;
+    Button
+&lt;/button&gt;</code>
+                                </pre>
+                            </div>
+                            <button id="copyButton"
+                                class="mt-2 px-4 py-2 bg-green-600 cursor-pointer text-white rounded hover:bg-green-700 transition duration-300">
+                                Copy to Clipboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+    </main>
+    </div>
+
+    <!-- JavaScript for mobile menu toggle -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuButton = document.querySelector(".sm\\:hidden");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            mobileMenuButton.addEventListener("click", function () {
+                if (mobileMenu.classList.contains("hidden")) {
+                    mobileMenu.classList.remove("hidden");
+                    mobileMenu.classList.add("block");
+                } else {
+                    mobileMenu.classList.remove("block");
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+
+    <script src="button.js"></script>
+</body>
+
+</html>
