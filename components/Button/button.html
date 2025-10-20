@@ -81,31 +81,31 @@
             <div class="border h-full rounded-lg p-6 bg-gray-900/50 backdrop-blur-lg border-gray-800">
                 <h1 class="text-3xl font-bold mb-6">Button Generator</h1>
 
-                <div class="flex flex-row gap-6">
+                <div class="flex flex-row gap-6 max-md:flex-col w-full">
                     <!-- left -->
-                    <div class="border border-gray-800 flex flex-col gap-6 w-[40%] p-4 rounded-lg h-fit">
-                        <div class="flex justify-between w-full items-center">
-                            <div>
+                    <div class="border border-gray-800 flex flex-col gap-6 w-[50%] max-md:w-full p-4 rounded-lg h-fit">
+                        <div class="flex justify-between w-full items-center gap-10 max-[400px]:flex-col">
+                            <div class="w-full">
                                 <label for="buttonText" class="block text-sm font-medium mb-2">Button Text</label>
                                 <input type="text" id="buttonText" placeholder="Enter button text here." id="buttonText"
                                     class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                             </div>
 
-                            <div>
+                            <div class="w-full">
                                 <label for="buttonTitle" class="block text-sm font-medium mb-2">Button Title</label>
                                 <input type="text" id="buttonTitle" placeholder="Enter button title here."
                                     class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                             </div>
                         </div>
 
-                        <div class="flex justify-between w-full items-center">
-                            <div>
+                        <div class="flex justify-between w-full items-center gap-10 max-[400px]:flex-col">
+                            <div class="w-full">
                                 <label for="buttonColor" class="block text-sm font-medium mb-2">Button Color</label>
                                 <input type="color" id="buttonColor" value="#2563EB"
                                     class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                                 <p class="text-sm">Selected Color: <span id="colorValue">#2563EB</span></p>
                             </div>
-                            <div>
+                            <div class="w-full">
                                 <label for="buttonTextColor" class="block text-sm font-medium mb-2">Button Text
                                     Color</label>
                                 <input type="color" id="buttonTextColor" value="#FFFFFF"
@@ -113,15 +113,15 @@
                                 <p class="text-sm">Selected Color: <span id="textColorValue">#FFFFFF</span></p>
                             </div>
                         </div>
-                        <div class="flex justify-between w-full items-center">
-                            <div>
+                        <div class="flex justify-between w-full items-center gap-10 max-[400px]:flex-col">
+                            <div class="w-full">
                                 <label for="buttonBorderColor" class="block text-sm font-medium mb-2">Button Border
                                     Color</label>
                                 <input type="color" id="buttonBorderColor" value="#2563EB"
                                     class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                                 <p class="text-sm">Selected Color: <span id="borderColorValue">#2563EB</span></p>
                             </div>
-                            <div>
+                            <div class="w-full">
                                 <label for="buttonBorderWidth" class="block text-sm font-medium mb-2">Button Border
                                     Width
                                     (px)</label>
@@ -130,14 +130,14 @@
                             </div>
 
                         </div>
-                        <div class="flex justify-between w-full items-center">
-                            <div>
+                        <div class="flex justify-between w-full items-center gap-10 max-[400px]:flex-col">
+                            <div class="w-full">
                                 <label for="buttonBorderRadius" class="block text-sm font-medium mb-2">Button Border
                                     Radius (px)</label>
                                 <input type="number" id="buttonBorderRadius" value="0" min="0" max="100"
                                     class="border text-center w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                             </div>
-                            <div>
+                            <div class="w-full">
                                 <label for="buttonPadding" class="block text-sm font-medium mb-2">Button Padding
                                     (px)</label>
                                 <input type="number" id="buttonPadding" value="8" min="0"
@@ -145,8 +145,8 @@
                             </div>
 
                         </div>
-                        <div class="flex justify-between">
-                            <div class="w-[48%]">
+                        <div class="flex justify-between w-full items-center gap-10 max-[400px]:flex-col">
+                            <div class="w-full">
                                 <label for="hoverEffect" class="block text-sm font-medium mb-2">Hover Effect</label>
 
                                 <select id="hoverEffect"
@@ -157,7 +157,7 @@
                                     <option value="scale" class="bg-[#090F1D]">Scale Up</option>
                                 </select>
                             </div>
-                            <div class="w-[48%]">
+                            <div class="w-full">
                                 <label for="transitionDuration" class="block text-sm font-medium mb-2">Transition
                                     Duration
                                     (ms)</label>
@@ -169,7 +169,7 @@
                     </div>
 
                     <!-- right -->
-                    <div class="border border-gray-800 w-[60%] p-4 rounded-lg">
+                    <div class="border border-gray-800 w-[50%] max-md:w-full p-4 rounded-lg">
                         <div class="mb-10">
                             <label class="block text-sm font-medium mb-2">Preview:</label>
                             <button id="buttonPreview"
