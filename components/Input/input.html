@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick UI - Input Generator</title>
+    <link rel="stylesheet" href="input.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Include Heroicons for input icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body class="bg-[#030712] text-white font-['Inter']">
+    <div class="min-h-screen w-full">
+        <!-- Navbar -->
+        <nav class="flex items-center text-white/90 z-10 justify-between fixed top-0 w-full py-4 px-4 sm:px-6 md:px-8 lg:px-12 border-b-[1px] border-b-gray-800/20 backdrop-blur-lg">
+            <a href="/index.html">
+                <div class="font-bold text-2xl sm:text-3xl">QUICK UI</div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden sm:flex gap-4 md:gap-6">
+                <div class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default">
+                    <a href="../../index.html">
+                        <li class="group-hover:-translate-y-10 transition duration-300">
+                            Home
+                        </li>
+                        <li class="absolute top-10 group-hover:-translate-y-10 transition duration-300">
+                            Home
+                        </li>
+                    </a>
+                </div>
+                <div class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default">
+                    <a href="../../generator/generator.html">
+                        <li class="group-hover:-translate-y-10 transition duration-300">
+                            Generator
+                        </li>
+                        <li class="absolute top-10 group-hover:-translate-y-10 transition duration-300">
+                            Generator
+                        </li>
+                    </a>
+                </div>
+                <div class="h-[3vh] overflow-y-hidden flex flex-col justify-center group relative cursor-default">
+                    <a href="../../history/history.html">
+                        <li class="group-hover:-translate-y-10 transition duration-300">
+                            History
+                        </li>
+                        <li class="absolute top-10 group-hover:-translate-y-10 transition duration-300">
+                            History
+                        </li>
+                    </a>
+                </div>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="sm:hidden flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown (hidden by default) -->
+        <div id="mobileMenu"
+            class="fixed top-16 inset-x-0 hidden bg-[#030712] backdrop-blur-lg z-50 border-b border-gray-800">
+            <div class="p-4 space-y-4">
+                <a href="../../index.html" class="block py-2 px-4 text-white hover:bg-gray-800 rounded">Home</a>
+                <a href="../../generator/generator.html" class="block py-2 px-4 text-white hover:bg-gray-800 rounded">Generator</a>
+                <a href="../../history/history.html" class="block py-2 px-4 text-white hover:bg-gray-800 rounded">History</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="pt-20 pb-10 px-4 sm:px-6 md:px-8">
+            <div class="border h-full rounded-lg p-6 bg-gray-900/50 backdrop-blur-lg border-gray-800">
+                <h1 class="text-3xl font-bold mb-6">Input Field Generator</h1>
+
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <!-- left -->
+                    <div class="border border-gray-800 flex flex-col gap-6 w-full lg:w-[40%] p-4 rounded-lg h-fit">
+                        <!-- Input Type -->
+                        <div>
+                            <label for="inputType" class="block text-sm font-medium mb-2">Input Type</label>
+                            <select id="inputType"
+                                class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                <option value="text" class="bg-[#090F1D]" selected>Text</option>
+                                <option value="password" class="bg-[#090F1D]">Password</option>
+                                <option value="email" class="bg-[#090F1D]">Email</option>
+                                <option value="number" class="bg-[#090F1D]">Number</option>
+                                <option value="tel" class="bg-[#090F1D]">Phone</option>
+                                <option value="url" class="bg-[#090F1D]">URL</option>
+                                <option value="search" class="bg-[#090F1D]">Search</option>
+                                <option value="date" class="bg-[#090F1D]">Date</option>
+                            </select>
+                        </div>
+
+                        <!-- Input Placeholder & Value -->
+                        <div class="flex flex-col sm:flex-row justify-between w-full gap-4">
+                            <div class="w-full">
+                                <label for="placeholder" class="block text-sm font-medium mb-2">Placeholder</label>
+                                <input type="text" id="placeholder" value="Enter text here..." placeholder="Enter placeholder text"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+                            <div class="w-full">
+                                <label for="inputValue" class="block text-sm font-medium mb-2">Default Value</label>
+                                <input type="text" id="inputValue" placeholder="Default value (optional)"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                            </div>
+                        </div>
+
+                        <!-- Label Options -->
+                        <div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="includeLabel" class="mr-2" checked>
+                                <label for="includeLabel" class="text-sm font-medium">Include Label</label>
+                            </div>
+                            
+                            <div id="labelOptions" class="mt-3">
+                                <label for="labelText" class="block text-sm font-medium mb-2">Label Text</label>
+                                <input type="text" id="labelText" value="Input Label" placeholder="Enter label text"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                
+                                <div class="mt-3">
+                                    <label for="labelPosition" class="block text-sm font-medium mb-2">Label Position</label>
+                                    <select id="labelPosition"
+                                        class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                        <option value="top" class="bg-[#090F1D]" selected>Top</option>
+                                        <option value="left" class="bg-[#090F1D]">Left</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Colors -->
+                        <div class="flex flex-col sm:flex-row justify-between w-full items-start sm:items-center gap-4">
+                            <div>
+                                <label for="textColor" class="block text-sm font-medium mb-2">Text Color</label>
+                                <input type="color" id="textColor" value="#FFFFFF"
+                                    class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                <p class="text-sm">Selected: <span id="textColorValue">#FFFFFF</span></p>
+                            </div>
+                            <div>
+                                <label for="bgColor" class="block text-sm font-medium mb-2">Background Color</label>
+                                <input type="color" id="bgColor" value="#111827"
+                                    class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                <p class="text-sm">Selected: <span id="bgColorValue">#111827</span></p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row justify-between w-full items-start sm:items-center gap-4">
+                            <div>
+                                <label for="borderColor" class="block text-sm font-medium mb-2">Border Color</label>
+                                <input type="color" id="borderColor" value="#4B5563"
+                                    class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                <p class="text-sm">Selected: <span id="borderColorValue">#4B5563</span></p>
+                            </div>
+                            <div>
+                                <label for="focusColor" class="block text-sm font-medium mb-2">Focus Color</label>
+                                <input type="color" id="focusColor" value="#3B82F6"
+                                    class="border w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
+                                <p class="text-sm">Selected: <span id="focusColorValue">#3B82F6</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Size and Styling -->
+                        <div class="flex flex-col sm:flex-row justify-between w-full gap-4">
+                            <div>
+                                <label for="inputSize" class="block text-sm font-medium mb-2">Input Size</label>
+                                <select id="inputSize"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                    <option value="sm" class="bg-[#090F1D]">Small</option>
+                                    <option value="md" class="bg-[#090F1D]" selected>Medium</option>
+                                    <option value="lg" class="bg-[#090F1D]">Large</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="borderRadius" class="block text-sm font-medium mb-2">Border Radius</label>
+                                <select id="borderRadius"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                    <option value="rounded-none" class="bg-[#090F1D]">None</option>
+                                    <option value="rounded" class="bg-[#090F1D]">Small</option>
+                                    <option value="rounded-md" class="bg-[#090F1D]" selected>Medium</option>
+                                    <option value="rounded-lg" class="bg-[#090F1D]">Large</option>
+                                    <option value="rounded-xl" class="bg-[#090F1D]">Extra Large</option>
+                                    <option value="rounded-full" class="bg-[#090F1D]">Full</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Input State -->
+                        <div class="flex flex-col sm:flex-row justify-between w-full gap-4">
+                            <div>
+                                <label for="inputState" class="block text-sm font-medium mb-2">Input State</label>
+                                <select id="inputState"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                    <option value="default" class="bg-[#090F1D]" selected>Default</option>
+                                    <option value="disabled" class="bg-[#090F1D]">Disabled</option>
+                                    <option value="readonly" class="bg-[#090F1D]">Read Only</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="width" class="block text-sm font-medium mb-2">Width</label>
+                                <select id="width"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                    <option value="w-full" class="bg-[#090F1D]" selected>Full Width</option>
+                                    <option value="w-64" class="bg-[#090F1D]">Medium (16rem)</option>
+                                    <option value="w-48" class="bg-[#090F1D]">Small (12rem)</option>
+                                    <option value="w-auto" class="bg-[#090F1D]">Auto</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Right Icon -->
+                        <div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="includeRightIcon" class="mr-2">
+                                <label for="includeRightIcon" class="text-sm font-medium">Include Icon</label>
+                            </div>
+                            
+                            <div id="rightIconOptions" class="mt-3 hidden">
+                                <label for="rightIcon" class="block text-sm font-medium mb-2">Choose Icon</label>
+                                <select id="rightIcon"
+                                    class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300">
+                                    <option value="check" class="bg-[#090F1D]">Check</option>
+                                    <option value="eye" class="bg-[#090F1D]">Eye</option>
+                                    <option value="eye-off" class="bg-[#090F1D]">Eye Off</option>
+                                    <option value="x" class="bg-[#090F1D]">Clear (X)</option>
+                                    <option value="chevron-down" class="bg-[#090F1D]">Dropdown</option>
+                                    <option value="alert-circle" class="bg-[#090F1D]">Alert</option>
+                                    <option value="search" class="bg-[#090F1D]">Search</option>
+                                    <option value="mail" class="bg-[#090F1D]">Mail</option>
+                                    <option value="user" class="bg-[#090F1D]">User</option>
+                                    <option value="lock" class="bg-[#090F1D]">Lock</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- right -->
+                    <div class="border border-gray-800 w-full lg:w-[60%] p-4 rounded-lg">
+                        <div class="mb-10">
+                            <label class="block text-sm font-medium mb-2">Preview:</label>
+                            <div class="bg-gray-800 p-8 rounded-lg flex items-center justify-center">
+                                <div id="inputPreview" class="w-full">
+                                    <!-- Input will be rendered here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h2>Generated Code:</h2>
+                            <div>
+                                <pre class="bg-gray-800 p-4 rounded text-sm overflow-x-auto" id="generatedCode"><code>&lt;div&gt;
+    &lt;label for="input" class="block mb-2 text-sm font-medium text-white"&gt;Input Label&lt;/label&gt;
+    &lt;input type="text" id="input" class="bg-gray-900 border border-gray-600 text-white text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter text here..."&gt;
+&lt;/div&gt;</code>
+                                </pre>
+                            </div>
+                            <button id="copyButton"
+                                class="mt-2 px-4 py-2 bg-green-600 cursor-pointer text-white rounded hover:bg-green-700 transition duration-300">
+                                Copy to Clipboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript for mobile menu toggle -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuButton = document.querySelector(".sm\\:hidden");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            mobileMenuButton.addEventListener("click", function () {
+                if (mobileMenu.classList.contains("hidden")) {
+                    mobileMenu.classList.remove("hidden");
+                    mobileMenu.classList.add("block");
+                } else {
+                    mobileMenu.classList.remove("block");
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+
+    <script src="input.js"></script>
+</body>
+
+</html>

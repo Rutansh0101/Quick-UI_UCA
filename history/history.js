@@ -125,8 +125,8 @@ function createPreviewModal() {
         modal.innerHTML = `
             <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
             <div class="absolute inset-0 flex items-center justify-center p-4">
-                <div class="bg-gray-800/80 rounded-lg shadow-xl w-full max-w-3xl overflow-hidden">
-                    <div class="flex justify-between items-center p-4 border-b border-gray-700">
+                <div class="bg-gray-800/80 rounded-lg shadow-xl w-full max-w-3xl overflow-hidden max-h-[90vh] overflow-y-auto">
+                    <div class="flex justify-between items-center p-4 border-b border-gray-700 sticky top-0 bg-gray-800/95 z-10">
                         <h3 id="modalTitle" class="text-lg font-medium text-white">Component Preview</h3>
                         <button id="closeModal" class="text-gray-400 hover:text-white">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -139,11 +139,14 @@ function createPreviewModal() {
                             <div id="componentType" class="text-sm font-medium text-gray-400 mb-2 capitalize"></div>
                             <div id="componentDate" class="text-xs text-gray-500"></div>
                         </div>
-                        <div class="p-4 bg-gray-900 rounded-md mb-6">
-                            <pre id="componentCode" class="text-xs text-gray-300 overflow-x-auto"></pre>
+                        <div class="p-4 bg-gray-900 rounded-md mb-6 overflow-x-auto">
+                            <pre id="componentCode" class="text-xs text-gray-300"></pre>
                         </div>
-                        <div class="p-6 rounded-md">
-                            <div id="previewContainer" class="preview-area"></div>
+                        <div class="p-4 md:p-6 rounded-md bg-gray-900/50">
+                            <h4 class="text-sm font-medium text-gray-400 mb-4">Preview:</h4>
+                            <div class="preview-container">
+                                <div id="previewContainer" class="preview-area"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -185,14 +188,96 @@ function openPreviewModal(item) {
     componentDate.textContent = `Generated on: ${formatDate(item.time)}`;
     componentCode.textContent = item.code;
     
-    // Clean and set the HTML in the preview container
-    previewContainer.innerHTML = item.code;
+    // Clear previous preview
+    previewContainer.innerHTML = '';
+    
+    // Create a responsive wrapper based on component type
+    const previewWrapper = document.createElement('div');
+    
+    // Apply specific styling based on component type
+    switch(item.type.toLowerCase()) {
+        case 'card':
+            // For cards, create a responsive wrapper with proper width constraints
+            previewWrapper.className = 'w-full flex justify-center items-center p-4';
+            previewWrapper.innerHTML = `
+                <div class="w-full sm:w-auto max-w-full">
+                    ${item.code}
+                </div>
+            `;
+            break;
+            
+        case 'toggle':
+        case 'checkbox':
+        case 'button':
+            // For small UI elements, center them
+            previewWrapper.className = 'flex justify-center items-center p-6 bg-gray-800 rounded-lg';
+            previewWrapper.innerHTML = item.code;
+            break;
+            
+        default:
+            // Default handling for other component types
+            previewWrapper.className = 'w-full flex justify-center';
+            previewWrapper.innerHTML = item.code;
+    }
+    
+    previewContainer.appendChild(previewWrapper);
+    
+    // Add any component-specific scripts or styles if needed
+    applyComponentSpecificBehavior(item.type, previewWrapper);
     
     // Show modal with a fade-in effect
     modal.classList.remove('hidden');
     
     // Prevent body scrolling
     document.body.style.overflow = 'hidden';
+}
+
+// Function to apply component-specific behaviors
+function applyComponentSpecificBehavior(type, container) {
+    switch(type.toLowerCase()) {
+        case 'card':
+            // Make sure any max-width classes don't overflow the container
+            const cardElement = container.querySelector('[class*="max-w-"]');
+            if (cardElement) {
+                // Ensure the card is responsive
+                if (window.innerWidth < 640) { // Mobile viewport
+                    cardElement.classList.add('w-full');
+                    // Remove any fixed width classes that might cause overflow
+                    cardElement.classList.remove(
+                        'max-w-xs', 'max-w-sm', 'max-w-md', 'max-w-lg', 'max-w-xl', 'max-w-2xl', 'max-w-3xl',
+                        'max-w-4xl', 'max-w-5xl', 'max-w-6xl', 'max-w-7xl'
+                    );
+                    cardElement.style.maxWidth = '100%';
+                }
+            }
+            break;
+            
+        case 'toggle':
+            // Make sure toggle functionality works in preview
+            const toggleInput = container.querySelector('input[type="checkbox"]');
+            if (toggleInput) {
+                toggleInput.addEventListener('click', (e) => {
+                    // Allow clicking but prevent default to avoid state changes in preview
+                    e.preventDefault();
+                    // Toggle the checked state for demonstration
+                    toggleInput.checked = !toggleInput.checked;
+                });
+            }
+            break;
+            
+        case 'checkbox':
+            // Make sure checkbox functionality works in preview
+            const checkboxInput = container.querySelector('input[type="checkbox"]');
+            if (checkboxInput) {
+                checkboxInput.addEventListener('click', (e) => {
+                    // Allow clicking but prevent default to avoid state changes in preview
+                    e.preventDefault();
+                    // Toggle the checked state for demonstration
+                    checkboxInput.checked = !checkboxInput.checked;
+                });
+            }
+            break;
+    }
 }
 
 // Function to close the preview modal
@@ -257,7 +342,7 @@ function clearAllHistory() {
     }
 }
 
-// Add some styles for the preview container
+// Add styles for responsive preview container
 const style = document.createElement('style');
 style.textContent = `
     .preview-area {
@@ -265,10 +350,67 @@ style.textContent = `
         justify-content: center;
         align-items: center;
         min-height: 100px;
+        width: 100%;
         font-family: 'Inter', sans-serif;
+        overflow: hidden;
+    }
+    
+    .preview-container {
+        width: 100%;
+        overflow-x: auto;
+        background-color: rgba(17, 24, 39, 0.7);
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+    
+    /* Responsive adjustments for different components */
+    @media (max-width: 640px) {
+        [class*="max-w-"] {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+        
+        /* Make cards more mobile-friendly */
+        .preview-container [class*="max-w-"] {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    
+    /* Ensure proper scrolling for code blocks */
+    #componentCode {
+        max-height: 200px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    
+    /* Make the modal more responsive */
+    @media (max-width: 640px) {
+        .absolute.inset-0.flex.items-center.justify-center.p-4 > div {
+            width: 95%;
+            max-height: 80vh;
+        }
     }
 `;
 document.head.appendChild(style);
+
+// Handle window resize to adjust component display
+window.addEventListener('resize', () => {
+    const previewContainer = document.getElementById('previewContainer');
+    if (previewContainer) {
+        // Find card components and make them responsive on resize
+        const cardElement = previewContainer.querySelector('[class*="max-w-"]');
+        if (cardElement) {
+            if (window.innerWidth < 640) {
+                cardElement.classList.add('w-full');
+                cardElement.style.maxWidth = '100%';
+            } else {
+                cardElement.style.maxWidth = '';
+            }
+        }
+    }
+});
 
 // Load history on page load
 window.onload = loadHistory;
