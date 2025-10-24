@@ -82,13 +82,13 @@
                         <div class="flex flex-col sm:flex-row justify-between w-full items-start sm:items-center gap-4">
                             <div>
                                 <label for="labelText" class="block text-sm font-medium mb-2">Checkbox Label</label>
-                                <input type="text" id="labelText" placeholder="Enter label text" value="Remember me"
+                                <input type="text" id="labelText" placeholder="Enter label text" value="Remember me" maxlength="1000"
                                     class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                             </div>
 
                             <div>
                                 <label for="checkboxTitle" class="block text-sm font-medium mb-2">Checkbox Title (Tooltip)</label>
-                                <input type="text" id="checkboxTitle" placeholder="Checkbox" value="Checkbox"
+                                <input type="text" id="checkboxTitle" placeholder="Checkbox" value="Checkbox" maxlength="100"
                                     class="w-full p-2 border border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                             </div>
                             <div class="w-full sm:w-[48%]">
                                 <label for="transitionDuration" class="block text-sm font-medium mb-2">Transition Duration (ms)</label>
-                                <input type="number" id="transitionDuration" value="200" min="0"
+                                <input type="number" id="transitionDuration" value="200" min="0" max="4000"
                                     class="border p-2 text-center w-full border-dashed border-gray-700 rounded text-white focus:outline-none focus:border-solid focus:border-gray-500 transition-all duration-300" />
                             </div>
                         </div>
